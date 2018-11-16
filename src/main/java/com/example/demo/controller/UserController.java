@@ -34,6 +34,9 @@ public class UserController {
         List<User> userList=userService.findAll();
 
 
+
+
+
         PageInfo pageInfo=new PageInfo(userList);
         model.addAttribute("allUser",pageInfo);
         return userList;
