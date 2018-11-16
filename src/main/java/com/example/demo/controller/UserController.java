@@ -32,6 +32,8 @@ public class UserController {
         model.addAttribute("user", userService.getUserById("1"));
         PageHelper.startPage(1,5);
         List<User> userList=userService.findAll();
+
+
         PageInfo pageInfo=new PageInfo(userList);
         model.addAttribute("allUser",pageInfo);
         return userList;
