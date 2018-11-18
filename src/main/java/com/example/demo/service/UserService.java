@@ -1,13 +1,11 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.User;
-
-import java.util.List;
+import com.example.demo.entity.SysUser;
 
 public interface UserService {
-    public User getUserById(String userId);
 
-    boolean addUser(User record);
+    boolean addUser(SysUser record);
 
-    List<User> findAll();
+
+    public SysUser getUserByName(String name);
 }
