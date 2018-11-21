@@ -1,18 +1,21 @@
 package com.example.demo.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "s_user")//code11
+@Table(name = "sys_user")//code11
 public class SysUser implements java.io.Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Integer id;
+    @GenericGenerator(name = "idGenerator", strategy = "uuid")
+    @GeneratedValue(generator = "idGenerator")
+    @Column(name = "userId", unique = true, nullable = false, length = 32)
+    private String userId;
     @Column(name = "name", length = 120)
     private String name; //用户名
     @Column(name = "email", length = 50)
@@ -37,15 +40,20 @@ public class SysUser implements java.io.Serializable {
         this.SysRoles = SysRoles;
     }
 
-
-    public Integer getId() {
-        return this.id;
+    public SysUser(String name, String email, String password, Date dob) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.dob = dob;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public String getUserId() {
+        return userId;
     }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getName() {
         return this.name;

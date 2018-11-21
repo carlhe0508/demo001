@@ -13,7 +13,7 @@ public class SecurityUser extends SysUser implements UserDetails {
 
     public SecurityUser(SysUser suser) {
         if (suser != null) {
-            this.setId(suser.getId());
+            this.setUserId(suser.getUserId());
             this.setName(suser.getName());
             this.setEmail(suser.getEmail());
             this.setPassword(suser.getPassword());

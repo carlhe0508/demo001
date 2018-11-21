@@ -1,15 +1,18 @@
 package com.example.demo.entity;
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "s_role")
+@Table(name = "sys_role")
 public class SysRole {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", length = 10)
-    private int id;
+    @GenericGenerator(name = "idGenerator", strategy = "uuid")
+    @GeneratedValue(generator = "idGenerator")
+    @Column(name = "roleId", unique = true, nullable = false, length = 32)
+    private String roleId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid", nullable = false)
@@ -18,12 +21,12 @@ public class SysRole {
     @Column(name = "name", length = 100)
     private String name;//角色名称
 
-    public int getId() {
-        return id;
+    public String getRoleId() {
+        return roleId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
     public String getName() {
@@ -42,6 +45,12 @@ public class SysRole {
         SUser = sUser;
     }
 
+    public SysRole(SysUser SUser, String name) {
+        this.SUser = SUser;
+        this.name = name;
+    }
 
+    public SysRole() {
+    }
 }
 

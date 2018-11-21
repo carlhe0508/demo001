@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="utf-8">
@@ -80,6 +80,17 @@
 						</ul>
 					</li>
 					<li><a href="#contact">Contact</a></li>
+					<li>
+						<a th:href="@{/login}">Log In</a>
+					</li>
+					<li>
+
+						<span>Hello [[${#httpServletRequest.remoteUser}]]!</span>
+						<form th:action="@{/logout}" method="post" th:name="form">
+							<a href='javascript:document.form.submit();'>Sign Out</a>
+						</form>
+
+					</li>
 				</ul>
 				<!-- /Main navigation -->
 
